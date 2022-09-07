@@ -10,14 +10,14 @@ terraform {
 }
 
 provider "aws" {
-    region  = "us-west-2"
+    region  = var.AWS_REGION
     shared_credentials_file = "~/.aws/credentials"
     profile = "tfadmin"
 }
 
 
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = var.VPC_CIDR
   instance_tenancy = "default"
 
   tags = {
