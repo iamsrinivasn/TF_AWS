@@ -1,3 +1,4 @@
+### Terraform Provider Declaration ### 
 terraform {
   required_providers {
     aws = {
@@ -7,20 +8,20 @@ terraform {
   }
   required_version = ">= 1.2.0"
 }
-
+### Terraform Provider AWS ###
 provider "aws" {
   region                  = var.AWS_REGION
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "tfadmin"
 }
-
+### Terraform AWS - VPC CREATE ###
 module "VPC_CREATE" {
-  # Create a new VPC
   source   = "./modules/vpc"
   AWS_ENV  = var.AWS_ENV
   VPC_CIDR = var.VPC_CIDR
 }
-
+### Terraform AWS - SUBNET's CREATE ###
+# List subnets with for_each statement # count.index #
 module "SUBNET_CREATE" {
   # Create a new VPC
   source   = "./modules/subnet"

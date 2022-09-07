@@ -17,4 +17,4 @@ variable "SUBNET_CIDR" {
   # type        = list(string)
   type = map 
   description = "SUBNET CIDR /24"
-}
+  }
