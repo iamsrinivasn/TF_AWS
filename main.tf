@@ -20,6 +20,14 @@ module "VPC_CREATE" {
   AWS_ENV  = var.AWS_ENV
   VPC_CIDR = var.VPC_CIDR
 }
+
+### Terraform AWS - IGW CREATE ###
+module "IGW_CREATE" {
+  source   = "./modules/igw"
+  AWS_ENV  = var.AWS_ENV
+  VPC_ID = module.VPC_CREATE.out_vpc_id
+}
+
 ### Terraform AWS - SUBNET's CREATE ###
 # List subnets with for_each statement # count.index #
 module "SUBNET_CREATE" {
