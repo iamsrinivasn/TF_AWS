@@ -5,23 +5,18 @@ terraform {
       version = "~> 4.16"
     }
   }
-
   required_version = ">= 1.2.0"
 }
 
 provider "aws" {
-    region  = var.AWS_REGION
-    shared_credentials_file = "~/.aws/credentials"
-    profile = "tfadmin"
+  region                  = var.AWS_REGION
+  shared_credentials_file = "~/.aws/credentials"
+  profile                 = "tfadmin"
 }
 
-
-resource "aws_vpc" "main" {
-  cidr_block       = var.VPC_CIDR
-  instance_tenancy = "default"
-
-  tags = {
-    Name = "main",
-    Env  = var.AWS_ENV
-  }
+module "VPC_CREATE" {
+  # Create a new VPC
+  source   = "./modules/vpc"
+  AWS_ENV  = var.AWS_ENV
+  VPC_CIDR = var.VPC_CIDR
 }

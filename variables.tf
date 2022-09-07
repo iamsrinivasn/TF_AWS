@@ -1,14 +1,14 @@
 variable "AWS_ENV" {
- type = string
- description = "AWS ENVIREMENT"
+  type        = string
+  description = "AWS ENVIREMENT"
 }
 
 variable "AWS_REGION" {
- type = string
- description = "AWS REGION"
+  type        = string
+  description = "AWS REGION"
 }
 
 variable "VPC_CIDR" {
- type = string
- description = "VPC CIDR /16"
+  type        = string
+  description = "VPC CIDR /16"
 }
