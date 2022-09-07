@@ -22,6 +22,6 @@ resource "aws_vpc" "main" {
 
   tags = {
     Name = "main",
-    Env  = "dev"
+    Env  = var.AWS_ENV
   }
 }
