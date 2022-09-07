@@ -14,6 +14,7 @@ variable "VPC_CIDR" {
 }
 
 variable "SUBNET_CIDR" {
-  type        = list(string)
+  # type        = list(string)
+  type = map 
   description = "SUBNET CIDR /24"
 }

@@ -1,13 +1,14 @@
 resource "aws_subnet" "SUBNET" {
-  # count = length(var.SUBNET_CIDR)
-  vpc_id     = var.VPC_ID
-  # cidr_block = var.SUBNET_CIDR[count.index].address
 
-  for_each = toset(var.SUBNET_CIDR)
-  cidr_block = each.key
+  vpc_id     = var.VPC_ID
+  
+  # count = length(var.SUBNET_CIDR)
+  # cidr_block = var.SUBNET_CIDR[count.index].address
+  for_each = tomap(var.SUBNET_CIDR)
+  cidr_block = each.value
 
   tags = {
-    Name = "subnet"
+    Name = each.key
     Env  = var.AWS_ENV
   }
 }
