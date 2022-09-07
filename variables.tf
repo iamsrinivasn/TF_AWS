@@ -12,3 +12,8 @@ variable "VPC_CIDR" {
   type        = string
   description = "VPC CIDR /16"
 }
+
+variable "SUBNET_CIDR" {
+  type        = list(string)
+  description = "SUBNET CIDR /24"
+}

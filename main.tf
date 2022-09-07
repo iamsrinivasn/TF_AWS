@@ -20,3 +20,12 @@ module "VPC_CREATE" {
   AWS_ENV  = var.AWS_ENV
   VPC_CIDR = var.VPC_CIDR
 }
+
+module "SUBNET_CREATE" {
+  # Create a new VPC
+  source   = "./modules/subnet"
+  AWS_ENV  = var.AWS_ENV
+  VPC_ID = module.VPC_CREATE.out_vpc_id
+  SUBNET_CIDR = var.SUBNET_CIDR
+}
+
