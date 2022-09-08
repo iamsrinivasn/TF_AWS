@@ -64,5 +64,6 @@ module "ROUTE_CREATE_PRIVATE" {
 module "ROUTE_ASSOCIATION_PRIVATE" {
   source  = "./modules/route-association"
   SUBNET_CIDR = var.SUBNET_CIDR
-  ROUTE_ID = module.ROUTE_CREATE_PRIVATE.out_route_id
+  PRIVATE_ROUTE_ID = module.ROUTE_CREATE_PRIVATE.out_route_id
+  PUBLIC_ROUTE_ID = module.VPC_CREATE.out_vpc_route_id
 }
