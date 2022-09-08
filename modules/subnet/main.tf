@@ -8,7 +8,7 @@ resource "aws_subnet" "SUBNET" {
   cidr_block = each.value
 
   tags = {
-    Name = each.key
+    Name = "${var.AWS_ENV}_${each.key}"
     Env  = var.AWS_ENV
   }
 }

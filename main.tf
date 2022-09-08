@@ -38,3 +38,31 @@ module "SUBNET_CREATE" {
   SUBNET_CIDR = var.SUBNET_CIDR
 }
 
+### Terraform AWS - ROUTE IGW  ###
+module "ROUTE_IGW" {
+  source   = "./modules/route-default"
+  AWS_ENV  = var.AWS_ENV
+  IGW_ID = module.IGW_CREATE.out_igw_id
+  ROUTE_ID = module.VPC_CREATE.out_vpc_route_id
+}
+/*
+### Terraform AWS - ROUTE DEFAULT PUBLIC  ###
+module "ROUTE_ASSOCIATION_PUBLIC" {
+  source   = "./modules/route-association"
+  SUBNET_ID = module.SUBNET_CREATE.out_subnet_id[0]
+  ROUTE_ID = module.VPC_CREATE.out_vpc_route_id
+}
+*/
+### Terraform AWS - ROUTE CREATE PRIVATE  ###
+module "ROUTE_CREATE_PRIVATE" {
+  source   = "./modules/route-create"
+  VPC_ID = module.VPC_CREATE.out_vpc_id
+  AWS_ENV  = var.AWS_ENV
+}
+
+### Terraform AWS - ROUTE ASSOCIATE PRIVATE  ###
+module "ROUTE_ASSOCIATION_PRIVATE" {
+  source  = "./modules/route-association"
+  SUBNET_CIDR = var.SUBNET_CIDR
+  ROUTE_ID = module.ROUTE_CREATE_PRIVATE.out_route_id
+}

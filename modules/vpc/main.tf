@@ -3,7 +3,7 @@ resource "aws_vpc" "VPC" {
   instance_tenancy = "default"
 
   tags = {
-    Name = var.AWS_ENV
+    Name = "${var.AWS_ENV}_${var.VPC_CIDR}"
     Env  = var.AWS_ENV
   }
 }
